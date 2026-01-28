@@ -1,0 +1,48 @@
+{
+  "name": "react-native-tour-guide",
+  "version": "1.0.0",
+  "description": "A simple and customizable tour guide library for React Native applications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "keywords": [
+    "react-native",
+    "tour",
+    "guide",
+    "walkthrough",
+    "tutorial",
+    "onboarding",
+    "tooltip",
+    "highlight"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/athaljen/react-native-tour-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/athaljen/react-native-tour-guide/issues"
+  },
+  "homepage": "https://github.com/athaljen/react-native-tour-guide#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.70.0",
+    "typescript": "^4.9.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ]
+}
