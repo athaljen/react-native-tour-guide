@@ -21,7 +21,7 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
     stepsRef.current.delete(order);
   }, []);
 
-  const start = useCallback((startFromStep: number = 1) => {
+  const start = useCallback((startFromStep = 1) => {
     const sortedSteps = Array.from(stepsRef.current.keys()).sort((a, b) => a - b);
     if (sortedSteps.length > 0) {
       const firstStep = startFromStep || sortedSteps[0];
@@ -34,11 +34,12 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
   const stop = useCallback(() => {
     setIsActive(false);
     setCurrentStep(null);
-  }, []);
+    onSkip?.();
+  }, [onSkip]);
 
   const next = useCallback(() => {
     const sortedSteps = Array.from(stepsRef.current.keys()).sort((a, b) => a - b);
-    const currentIndex = sortedSteps.indexOf(currentStep!);
+    const currentIndex = sortedSteps.indexOf(currentStep as number);
     
     if (currentIndex < sortedSteps.length - 1) {
       const nextStep = sortedSteps[currentIndex + 1];
@@ -53,7 +54,7 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
 
   const prev = useCallback(() => {
     const sortedSteps = Array.from(stepsRef.current.keys()).sort((a, b) => a - b);
-    const currentIndex = sortedSteps.indexOf(currentStep!);
+    const currentIndex = sortedSteps.indexOf(currentStep as number);
     
     if (currentIndex > 0) {
       const prevStep = sortedSteps[currentIndex - 1];
@@ -68,12 +69,6 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
       onStepChange?.(step);
     }
   }, [onStepChange]);
-
-  const handleSkip = useCallback(() => {
-    setIsActive(false);
-    setCurrentStep(null);
-    onSkip?.();
-  }, [onSkip]);
 
   const value: TourGuideContextValue = {
     currentStep,
