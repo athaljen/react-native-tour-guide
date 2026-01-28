@@ -10,6 +10,9 @@ export interface TourGuideContextValue {
   currentStep: number | null;
   isActive: boolean;
   totalSteps: number;
+  currentStepIndex: number;
+  overlayColor?: string;
+  overlayOpacity?: number;
   start: (startFromStep?: number) => void;
   stop: () => void;
   next: () => void;
@@ -55,6 +58,7 @@ export interface TooltipProps {
   onSkip?: () => void;
   currentStep: number;
   totalSteps: number;
+  stepIndex: number;
   nextText?: string;
   prevText?: string;
   skipText?: string;

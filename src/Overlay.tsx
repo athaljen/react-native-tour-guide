@@ -16,7 +16,7 @@ export const Overlay: React.FC<OverlayProps> = ({
     : 8;
 
   return (
-    <View style={styles.container} pointerEvents="box-none">
+    <View style={styles.container} pointerEvents="auto">
       {/* Top overlay */}
       <View
         style={[

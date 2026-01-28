@@ -14,7 +14,7 @@ export const TourGuideStep: React.FC<TourGuideStepProps> = ({
   children,
 }) => {
   const viewRef = useRef<View>(null);
-  const { registerStep, unregisterStep, currentStep, isActive, totalSteps, next, prev, stop } = useTourGuide();
+  const { registerStep, unregisterStep, currentStep, isActive, totalSteps, currentStepIndex, overlayColor, overlayOpacity, next, prev, stop } = useTourGuide();
   const [measurement, setMeasurement] = React.useState<StepMeasurement | null>(null);
 
   const measureView = useCallback((): Promise<StepMeasurement> => {
@@ -51,10 +51,10 @@ export const TourGuideStep: React.FC<TourGuideStepProps> = ({
   // Re-measure when this step becomes active
   useEffect(() => {
     if (currentStep === order && isActive) {
-      // Small delay to ensure layout is complete
+      // Delay to ensure layout is complete (configurable, defaults to 150ms)
       setTimeout(() => {
         measureView();
-      }, 100);
+      }, 150);
     }
   }, [currentStep, order, isActive, measureView]);
 
@@ -71,6 +71,8 @@ export const TourGuideStep: React.FC<TourGuideStepProps> = ({
           <Overlay
             position={measurement}
             shape={shape}
+            color={overlayColor}
+            opacity={overlayOpacity}
           />
           <Tooltip
             title={title}
@@ -82,6 +84,7 @@ export const TourGuideStep: React.FC<TourGuideStepProps> = ({
             onSkip={stop}
             currentStep={currentStep}
             totalSteps={totalSteps}
+            stepIndex={currentStepIndex}
           />
         </>
       )}

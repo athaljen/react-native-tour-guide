@@ -8,6 +8,8 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
   onStepChange,
   onComplete,
   onSkip,
+  overlayColor,
+  overlayOpacity,
 }) => {
   const [currentStep, setCurrentStep] = useState<number | null>(null);
   const [isActive, setIsActive] = useState(false);
@@ -24,7 +26,7 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
   const start = useCallback((startFromStep = 1) => {
     const sortedSteps = Array.from(stepsRef.current.keys()).sort((a, b) => a - b);
     if (sortedSteps.length > 0) {
-      const firstStep = startFromStep || sortedSteps[0];
+      const firstStep = startFromStep ?? sortedSteps[0];
       setCurrentStep(firstStep);
       setIsActive(true);
       onStepChange?.(firstStep);
@@ -74,6 +76,11 @@ export const TourGuideProvider: React.FC<TourGuideProviderProps> = ({
     currentStep,
     isActive,
     totalSteps: stepsRef.current.size,
+    currentStepIndex: currentStep !== null 
+      ? Array.from(stepsRef.current.keys()).sort((a, b) => a - b).indexOf(currentStep)
+      : -1,
+    overlayColor,
+    overlayOpacity,
     start,
     stop,
     next,

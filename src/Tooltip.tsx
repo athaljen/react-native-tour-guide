@@ -14,6 +14,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   onSkip,
   currentStep,
   totalSteps,
+  stepIndex,
   nextText = 'Next',
   prevText = 'Previous',
   skipText = 'Skip',
@@ -70,11 +71,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
   };
 
   const tooltipStyle = calculateTooltipPosition();
-  const isFirstStep = currentStep === 1;
-  const isLastStep = currentStep === totalSteps;
+  const isFirstStep = stepIndex === 0;
+  const isLastStep = stepIndex === totalSteps - 1;
 
   return (
-    <View style={[styles.tooltip, tooltipStyle]} pointerEvents="box-none">
+    <View style={[styles.tooltip, tooltipStyle]} pointerEvents="auto">
       <View style={styles.content}>
         {title && <Text style={styles.title}>{title}</Text>}
         {text && <Text style={styles.text}>{text}</Text>}
@@ -155,13 +156,13 @@ const styles = StyleSheet.create({
   },
   navigationButtons: {
     flexDirection: 'row',
-    gap: 8,
   },
   button: {
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 4,
     backgroundColor: '#f0f0f0',
+    marginLeft: 8,
   },
   buttonText: {
     fontSize: 14,
