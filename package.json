@@ -20,6 +20,14 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/athaljen/react-native-tour-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/athaljen/react-native-tour-guide/issues"
+  },
+  "homepage": "https://github.com/athaljen/react-native-tour-guide#readme",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-native": ">=0.60.0"
